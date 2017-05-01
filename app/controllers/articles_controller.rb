@@ -8,9 +8,17 @@ class ArticlesController < ApplicationController
 		# render plain: params[:article].inspect
 		# new instance variable
 		@article = Article.new(article_params)
-		@article.save
-		# pass in the show path for that particular article
-		redirect_to articles_show(@article)
+		if @article.save
+			flash[:notice] = "Article sucessfully created"
+			redirect_to article_path(@article)
+		else
+			render 'new'
+		end
+	end
+
+	def show
+		# instance variable = find by id from params hash
+		@article = Article.find(params[:id])
 	end
 
 	private
