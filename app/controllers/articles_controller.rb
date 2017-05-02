@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
 		# article instance variable = find by id from params hash
 		@article = Article.find(params[:id])
 		if @article.update(article_params)
-			flash[:notice] = "Article sucessfully updated"
+			flash[:notice] = "Article successfully updated"
 			redirect_to article_path(@article)
 		else
 			render 'edit'
@@ -38,6 +38,13 @@ class ArticlesController < ApplicationController
 	def show
 		# instance variable = find by id from params hash
 		@article = Article.find(params[:id])
+	end
+
+	def destroy
+		@article = Article.find(params[:id])
+		@article.destroy
+		flash[:notice] = "Article successfully deleted"
+		redirect_to articles_path
 	end
 
 	private
