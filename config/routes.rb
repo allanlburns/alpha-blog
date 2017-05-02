@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	root 'pages#home'
+	root 'welcome#home'
 	get 'about', to: 'welcome#about'
 
 	# generates RESTful routes for resources (try rake routes with and without "resources")
